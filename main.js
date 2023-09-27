@@ -17,7 +17,7 @@ async function refresh() {
     const posts = await fetch(url)
       .then(r => r.json())
       .then(j => j.data.children)
-    stack.push(...posts.filter(post => post.post_hint === "image"));
+    stack.push(...posts.filter(post => post.data.post_hint === "image"));
     stack.sort(() => Math.random() - 0.5);
   }
   updateBackground(stack.pop().data.url)
