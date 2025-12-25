@@ -14,13 +14,33 @@ function updateBackground(url) {
 const stack = [];
 async function refresh() {
   if (stack.length === 0) {
-    const posts = await fetch(url)
-      .then(r => r.json())
-      .then(j => j.data.children)
-    stack.push(...posts.filter(post => post.data.post_hint === "image"));
-    stack.sort(() => Math.random() - 0.5);
+    try {
+      const posts = await fetch(url)
+        .then(r => r.json())
+        .then(j => j.data.children);
+      stack.push(...posts.filter(post => post.data.post_hint === "image"));
+      stack.sort(() => Math.random() - 0.5);
+    } catch (error) {
+      console.error("Failed to fetch images from Reddit:", error);
+      document.body.classList.add('loaded');
+      return;
+    }
   }
-  updateBackground(stack.pop().data.url)
+
+  const post = stack.pop();
+  if (!post) {
+    document.body.classList.add('loaded');
+    return;
+  }
+
+  const imageUrl = post.data.url;
+  const img = new Image();
+  img.onload = () => {
+    updateBackground(imageUrl);
+    document.body.classList.add('loaded');
+  };
+  img.onerror = refresh;
+  img.src = imageUrl;
 }
 
 refresh();
