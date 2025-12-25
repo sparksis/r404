@@ -17,3 +17,37 @@ body,
 #root {
   position: fixed;
 }
+
+#loader {
+  position: fixed;
+  border: 1vmin solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  width: 10vmin;
+  height: 10vmin;
+  left: calc(50% - 5vmin);
+  top: calc(50% - 5vmin);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body.loaded #loader {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
