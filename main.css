@@ -12,10 +12,12 @@ body,
   position: fixed;
   filter: blur(33vmin);
   transform: scale(3);
+  transition: background 1s;
 }
 
 #root {
   position: fixed;
+  transition: background 1s, opacity 1s;
 }
 
 #loading {
