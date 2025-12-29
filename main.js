@@ -14,6 +14,8 @@ let loading = document.getElementById('loading');
 function updateBackground(url) {
   background.style.background = `center url("${url}")`
   root.style.background = `center / contain no-repeat url("${url}")`;
+  background.style.opacity = 1;
+  root.style.opacity = 1;
   if (loading) {
     loading.remove();
     loading = null;
@@ -32,8 +34,7 @@ async function refresh() {
     } catch (e) {
       console.error("Failed to fetch from reddit", e);
       if (loading) {
-        loading.remove();
-        loading = null;
+        loading.innerText = 'Could not load images. Are you offline?';
       }
       return;
     }
