@@ -8,14 +8,16 @@ body,
   overflow: hidden;
 }
 
-#background {
-  position: fixed;
-  filter: blur(33vmin);
-  transform: scale(3);
-}
-
+#background,
 #root {
   position: fixed;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+#background {
+  filter: blur(33vmin);
+  transform: scale(3);
 }
 
 #loading {
