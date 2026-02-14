@@ -1,9 +1,0 @@
-site_name: Reddit Background Viewer
-site_description: Documentation for the Reddit Background Viewer
-theme:
-  name: material
-
-nav:
-  - Home: index.md
-  - Vision: gemini.md
-  - Technical Specifications: spec.md
