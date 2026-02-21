@@ -11,12 +11,23 @@ const root = document.getElementById('root');
 const background = document.getElementById('background');
 let loading = document.getElementById('loading');
 
-function updateBackground(url) {
-  background.style.background = `center url("${url}")`
+function setBackgroundImage(url) {
+  background.style.background = `center url("${url}")`;
   root.style.background = `center / contain no-repeat url("${url}")`;
+}
+
+function updateBackground(url) {
   if (loading) {
+    setBackgroundImage(url);
     loading.remove();
     loading = null;
+  } else {
+    root.style.opacity = 0;
+    // Delay matches the 1s transition in main.css
+    setTimeout(() => {
+      setBackgroundImage(url);
+      root.style.opacity = 1;
+    }, 1000);
   }
 }
 
